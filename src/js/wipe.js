@@ -38,8 +38,27 @@ function drawLine(context,x1,y1,x2,y2){
 	context.stroke();
 	context.restore();
 }
-function arguments(context,x1,y1,x2,y2){
-	
+function drawT(context,x1,y1,x2,y2){
+	if(arguments.length === 3){
+		//调用的是画点功能
+		context.save();
+		context.beginPath();
+		context.arc(x1,y1,radius,0,2*Math.PI);
+		context.fillStyle = "red";
+		context.fill();
+		context.restore();
+	}else if(arguments.length === 5){
+		context.save();
+		context.lineCap = "round";
+		context.beginPath();
+		context.moveTo(x1,y1);
+		context.lineTo(x2,y2);
+		context.lineWidth = radius*2;
+		context.stroke();
+		context.restore();
+	}else{
+		return false;
+	}
 }
 // 在canvas画布上监听自定义事件"mousedown",调用drawPoint函数
 cas.addEventListener(clickEvtName,function(evt){
@@ -48,7 +67,7 @@ cas.addEventListener(clickEvtName,function(evt){
 	x1 = device ? event.touches[0].clientX : event.clientX;
 	y1 = device ? event.touches[0].clientY : event.clientY;
 	isMouseDown = true;
-	drawarv(context,x1,y1);
+	drawT(context,x1,y1);
 },false);
 cas.addEventListener(moveEvtName,function(evt){
 	if (!isMouseDown ) {
@@ -59,7 +78,7 @@ cas.addEventListener(moveEvtName,function(evt){
 		x2 = device ? event.touches[0].clientX : event.clientX;
 		y2 = device ? event.touches[0].clientY : event.clientY;
 		//drawPoint(context,a,b);
-		drawLine(context,x1,y1,x2,y2);
+		drawT(context,x1,y1,x2,y2);
 		//每次的结束点变成下一次划线的开始点
 		x1 = x2;
 		y1 = y2;
