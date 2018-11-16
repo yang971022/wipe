@@ -52,9 +52,14 @@ module.exports = function(grunt){
 				src:['sample/index.html'],
 				overwrite:true,
 				replacements:[{
-					from:/wipe-*.min.js/g,
-					to:'wipe<%=pkg.version %>.min.js'
-				}]
+					from:/\d[\.]\d[\.]\d/g,
+					to:'<%=pkg.version %>'
+				},
+				{
+					from:/hello\.css/g,
+					to:'hello.min.css'
+				}
+				]
 			}
 		}
 	});
