@@ -11,11 +11,11 @@
 			margin: 0;
 			padding: 0;
 		}
-		#cas{
+	/*	#cas{
 			border: 1px solid #000;
-			background: url(image/10.jpg) center 0 no-repeat;
+			background: url(images1.jpg) center 0 no-repeat;
 			background-size: cover;
-		}
+		}*/
 		#canvas{
 			border: 1px solid #000;
 			position: relative;
@@ -32,8 +32,31 @@
 	<canvas id="cas" width="375" height="667"></canvas>
 
 	<div id="canvas">
-		这是我曾血拼打下的江山，曾经追她穷如狗，现在看她嫌她丑，扔之可惜，牵之傻逼!!!在yhx01分支上的修改！
+		在主分支上的修改,在yhx01分支上的修改！
 	</div>
 </body>
 </html>
 <script src="js/wipe.js" type="text/javascript"></script>
+<script>
+var wipeConfig={
+	id:'cas',
+	coverType: 'image',//取值类型color、image
+	color:"#fff66",
+	imgUrl : "image/wipe2.jpg",//前面的覆盖图
+	backImgUrl:"image/10.jpg", //背景图片
+	width:"375", //canvas宽
+	height:"667", //canvas高
+	radius:"20", //涂抹笔的半径
+	transpercent:50,
+	callback:wipedCallback	//用户自定回调函数的名称
+}
+var cas01 = new Wipe(wipeConfig);
+// console.log(cas01);
+// console.log("" && "ok");
+function wipedCallback(percent){
+	if (percent > 50) {
+		console.log("透明面积超过50%，查看底图");
+	};
+};
+
+</script>
